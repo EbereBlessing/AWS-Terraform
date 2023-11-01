@@ -75,7 +75,7 @@ resource "aws_nat_gateway" "nat_gateway_01" {
   allocation_id = aws_eip.nat_gateway_01.id
   count = 1  # This should match the count from the subnet block
   subnet_id = aws_subnet.public_subnet_01[count.index].id
-  vpc_id = aws_vpc.main.id
+
 
   tags = {
     Name = "${var.stack_name}-NatGatewayAZ1"
@@ -86,7 +86,7 @@ resource "aws_nat_gateway" "nat_gateway_02" {
   allocation_id = aws_eip.nat_gateway_02.id
   count = 1
   subnet_id     = aws_subnet.public_subnet_02[count.index].id
-  vpc_id = aws_vpc.main.id
+ 
 
   tags = {
     Name = "${var.stack_name}-NatGatewayAZ2"
