@@ -59,7 +59,6 @@ resource "aws_route" "public" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.main.id
-  vpc_id = aws_vpc.main.id
 
 }
 
@@ -74,7 +73,8 @@ resource "aws_eip" "nat_gateway_02" {
 
 resource "aws_nat_gateway" "nat_gateway_01" {
   allocation_id = aws_eip.nat_gateway_01.id
-  subnet_id     = aws_subnet.public_subnet_01.id
+  count = 1  # This should match the count from the subnet block
+  subnet_id = aws_subnet.public_subnet_01[count.index].id
   vpc_id = aws_vpc.main.id
 
   tags = {
@@ -84,7 +84,8 @@ resource "aws_nat_gateway" "nat_gateway_01" {
 
 resource "aws_nat_gateway" "nat_gateway_02" {
   allocation_id = aws_eip.nat_gateway_02.id
-  subnet_id     = aws_subnet.public_subnet_02.id
+  count = 1
+  subnet_id     = aws_subnet.public_subnet_02[count.index].id
   vpc_id = aws_vpc.main.id
 
   tags = {
