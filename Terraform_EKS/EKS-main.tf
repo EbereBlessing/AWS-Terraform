@@ -50,14 +50,14 @@ module "irsa-ebs-csi" {
   version = "4.7.0"
 
   create_role                   = true
-  role_name                     = "AmazonEKSTFEBSCSIRole-${var.cluster}"
+  role_name                     = "AmazonEKSTFEBSCSIRole-${var.stack_name}"
   provider_url                  = module.eks.oidc_provider
   role_policy_arns              = [data.aws_iam_policy.ebs_csi_policy.arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:ebs-csi-controller-sa"]
 }
 
 resource "aws_eks_addon" "ebs-csi" {
-  cluster_name             = ${var.cluster}-ebs-csi
+  cluster_name             = ${var.stack_name}-ebs-csi
   addon_name               = "aws-ebs-csi-driver"
   addon_version            = "v1.20.0-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
