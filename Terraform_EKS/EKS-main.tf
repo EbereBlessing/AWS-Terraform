@@ -1,9 +1,5 @@
 # main.tf
-## Defining terraform provider
-provider "aws" {
-  region = var.region
 
-}
 ## Terraform EKS Module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"

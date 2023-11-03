@@ -4,7 +4,7 @@ variable "region" {
   default = "us-east-1"
 }
 variable "cluster"
-  name = EKS-setup
+  default = "EKS-setup"
   
 variable "vpc_block" {
   default     = "10.0.0.0/16"
