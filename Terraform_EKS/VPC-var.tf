@@ -9,6 +9,7 @@ variable "vpc_block" {
   description = "CIDR block of the vpc"
 }
 variable "stack_name" {
+   type    = string
   default = "EKS-setup"
 }
 variable "public_subnet_01_block" {
