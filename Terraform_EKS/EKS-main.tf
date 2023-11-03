@@ -73,6 +73,16 @@ resource "aws_eks_addon" "ebs-csi" {
   addon_name               = "aws-ebs-csi-driver"
   addon_version            = "v1.20.0-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
-
-
+}
+output "cluster_endpoint" {
+  description = "Endpoint for EKS control plane"
+  value       = module.eks.cluster_endpoint
+}
+output "region" {
+  description = "AWS region"
+  value       = var.region
+}
+output "cluster_name" {
+  description = "Kubernetes Cluster Name"
+  value       = var.cluster
 }
