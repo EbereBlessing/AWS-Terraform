@@ -5,7 +5,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "19.15.3"
 
-  cluster_name    = var.cluster
+  cluster_name    = var.stack_name
   cluster_version = "1.27"
 
   vpc_id                         = aws_vpc.main.id 
@@ -72,5 +72,5 @@ output "region" {
 }
 output "cluster_name" {
   description = "Kubernetes Cluster Name"
-  value       = var.cluster
+  value       = var.stack_name
 }
