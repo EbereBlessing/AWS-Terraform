@@ -166,10 +166,10 @@ resource "aws_route_table_association" "private_subnet_02" {
   route_table_id = aws_route_table.private_02.id
 }
 
-# Create Security Group for Control Plane
-#resource "aws_security_group" "control_plane" {
-#  name_prefix = "Cluster communication with worker nodes"
-#  vpc_id      = aws_vpc.main.id
+ Create Security Group for Control Plane
+resource "aws_security_group" "control_plane" {
+  name_prefix = "Cluster communication with worker nodes"
+  vpc_id      = aws_vpc.main.id
 #   ingress {
 #    description = "Allow all traffic through port 8080"
 #    from_port = 8080
