@@ -22,11 +22,13 @@ variable "private_subnets_cidr" {
   default     = ["10.0.3.0/24", "10.0.4.0/24"]
   description = "CIDR block for Private Subnets"
 }
-
-variable "availability_zones" {
-  description = "Availability zones"
-  type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
+variable "private_AZ" {
+    type    = list(string)
+    default = ["us-east-1a"]
+}
+variable "public_AZ" {
+    type    = list(string)
+    default = ["us-east-1b"]
 }
 variable "os" {
     description = "Which AMI to spawn"
