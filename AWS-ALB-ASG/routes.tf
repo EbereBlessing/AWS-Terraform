@@ -31,7 +31,7 @@ resource "aws_route_table" "public" {
   tags = {
     Name   = "${var.tag}-public-route-table"
   }
-
+}
 # Route table associations for both Public subnet
 resource "aws_route_table_association" "public" {
   count          = length(var.public_subnets_cidr)
@@ -39,7 +39,7 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-}
+
 
 
 
