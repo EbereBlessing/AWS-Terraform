@@ -21,13 +21,6 @@ resource "aws_instance" "Bastion" {
 resource "aws_launch_configuration" "ec2" {
   name                        = "${var.tag}-instances"
   image_id                    = lookup(var.os, var.region)
-  instance_type               = "${var.instance}"
-  security_groups             = [aws_security_group.ec2.id]
-  key_name                    = aws_key_pair.vpn_key
-}
-resource "aws_launch_configuration" "ec2" {
-  name                        = "${var.tag}-instances"
-  image_id                    = lookup(var.os, var.region)
   instance_type               = "${var.instance_type}"
   security_groups             = [aws_security_group.ec2_sg.id]
   key_name                    = aws_key_pair.vpn_key
