@@ -14,7 +14,7 @@ resource "aws_subnet" "public_subnet1" {
   tags = {
     Name = "${var.tag}-public_subnet1"
   }
-  cidr_block        = var.public_subnet_cidr1 
+  cidr_block        = var.public_subnet_cidr1  
   vpc_id            = aws_vpc.vpc.id
   availability_zone = var.az2
 }

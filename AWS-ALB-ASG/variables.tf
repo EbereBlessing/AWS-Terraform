@@ -25,7 +25,7 @@ variable "private_subnet_cidr1" {
   description = "CIDR block for Private Subnets"
 }
 variable "private_subnet_cidr2" {
-  default     =  "10.0.4.0/24"
+  default     =  "10.0.3.0/24"
   description = "CIDR block for Private Subnets"
 }
 variable "az1" {
