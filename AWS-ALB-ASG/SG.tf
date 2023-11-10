@@ -57,3 +57,23 @@ resource "aws_security_group" "ec2_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+## Creating Security Group
+## ssh connectivity from my bastion host to private subnet 
+resource "aws_security_group" "bastion_sg" {
+  name        = "Bastion_ec2_security_group"
+  description = "Allows ssh connectivity from the bastion host"
+  vpc_id      =  aws_vpc.vpc.id
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.1.0/24"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
