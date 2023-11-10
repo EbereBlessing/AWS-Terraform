@@ -1,4 +1,4 @@
-# Elastic-IP (eip) for NAT
+# NAT Gateway for the public subnet
 resource "aws_eip" "NAT_eip" {
   vpc        = true
   depends_on = [aws_internet_gateway.igw]
@@ -7,7 +7,7 @@ resource "aws_eip" "NAT_eip" {
 # NAT Gateway
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.NAT_eip.id
-  subnet_id     = element(aws_subnet.public_subnet.*.id, 0)
+  subnet_id     = aws_subnet.public_subnet2.id
   depends_on = [aws_eip.NAT_eip]
   tags = {
     Name  = "nat-gateway-${var.tag}"

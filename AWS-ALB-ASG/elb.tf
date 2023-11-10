@@ -1,3 +1,11 @@
+# Application Load balancer
+resource "aws_lb" "lb" {
+  name               ="${var.tag}-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.elb_sg.id, ]
+  subnets            = [aws_subnet.public_subnet1, aws_subnet.public_subnet2]
+}
 # Target Group Creation
 resource "aws_lb_target_group" "TG" {
   name        = "${var.tag}-tg"
@@ -14,18 +22,12 @@ resource "aws_lb_target_group" "TG" {
     matcher             = "200"
   }
 }
-# Application Load balancer
-resource "aws_lb" "lb" {
-  name               ="${var.tag}-alb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.elb_sg.id, ]
-  subnets            = aws_subnet.public_subnet.*.id
-}
-resource "aws_lb_listener" "application" {
-  load_balancer_arn = aws_lb.lb.arn
+
+resource "aws_lb_listener" "http_application" {
+  load_balancer_arn = aws_lb.lb.id
   port              = "80"
   protocol          = "HTTP"
+  depends_on        =  [aws_lb_target_group.TG]
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.TG.arn

@@ -9,30 +9,40 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-# Public subnet
-resource "aws_subnet" "public_subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  count                   = length(var.public_subnets_cidr)
-  cidr_block              = element(var.public_subnets_cidr, count.index)
-  availability_zone       = element(var.public_AZ, count.index) 
-   map_public_ip_on_launch = true
-
+# Public subnetss
+resource "aws_subnet" "public_subnet1" { 
   tags = {
-    Name  = "${var.tag}-${element(var.public_AZ, count.index)}-public-subnet"
+    Name = "${var.tag}-public_subnet1"
   }
+  cidr_block        = var.public_subnet_cidr1 
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = var.az[0]
+}
+resource "aws_subnet" "public_subnet2" { 
+  tags = {
+    Name = "${var.tag}-public_subnet2"
+  }
+  cidr_block        = var.public_subnet_cidr2 
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = var.az[1]
 }
 
 # Private Subnet
-resource "aws_subnet" "private_subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  count                   = length(var.private_subnets_cidr)
-  cidr_block              = element(var.private_subnets_cidr, count.index)
-  availability_zone       = element(var.private_AZ, count.index)
-  map_public_ip_on_launch = false
-
+resource "aws_subnet" "private_subnet2" { 
   tags = {
-    Name  = "${var.tag}-${element(var.private_AZ, count.index)}-private-subnet"
+    Name = "${var.tag}-private_subnet2"
   }
+  cidr_block        = var.private_subnet_cidr1 
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = var.az[0]
+}
+resource "aws_subnet" "private_subnet2" { 
+  tags = {
+    Name = "${var.tag}-private_subnet2"
+  }
+  cidr_block        = var.private_subnet_cidr2
+  vpc_id            = aws_vpc.vpc.id
+  availability_zone = var.az[1]
 }
 # Internet gateway for the public subnet
 resource "aws_internet_gateway" "igw" {
