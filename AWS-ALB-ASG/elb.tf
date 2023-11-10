@@ -4,7 +4,7 @@ resource "aws_lb" "lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.elb_sg.id, ]
-  subnets            = [aws_subnet.public_subnet1, aws_subnet.public_subnet2]
+  subnets            = [aws_subnet.public_subnet1.id, aws_subnet.public_subnet2.id]
 }
 # Target Group Creation
 resource "aws_lb_target_group" "TG" {
