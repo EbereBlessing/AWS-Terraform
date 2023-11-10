@@ -8,7 +8,7 @@ resource "aws_key_pair" "key" {
 resource "aws_instance" "Bastion" {
   ami             = var.os # Replace with the desired AMI ID
   instance_type = var.instance   # Replace with the desired instance type
-  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id     = aws_subnet.public_subnet1.id
   associate_public_ip_address = true
   key_name      = "key" # Replace with your SSH key pair
@@ -24,6 +24,10 @@ resource "aws_launch_configuration" "ec2" {
   security_groups             = [aws_security_group.ec2_sg.id]
   key_name                    = "key"
   associate_public_ip_address = false
+  tags = {
+    Name = "${var.tag}-instances"
+    description = "Jump server to the private instance "
+  }
   user_data = <<-EOL
   #!/bin/bash -xe
   sudo yum update -y
@@ -36,7 +40,7 @@ resource "aws_launch_configuration" "ec2" {
   docker run --rm --name nginx-server -d -p 80:80 -t my-nginx
   EOL
   depends_on = [aws_nat_gateway.nat]
-    tags = {
+  tags = {
     Name = "${var.tag}-private-instance"
 }
 }
