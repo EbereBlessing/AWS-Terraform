@@ -28,9 +28,11 @@ variable "private_subnet_cidr2" {
   default     =  "10.0.4.0/24"
   description = "CIDR block for Private Subnets"
 }
-variable "az" {
-    type    = list(string)
-    default = ["us-east-1a","us-east-1b" ]
+variable "az1" {
+    default = "us-east-1a"
+}
+variable "az2" {
+    default = "us-east-1b" 
 }
 variable "os" {
     description = "Which AMI to spawn"

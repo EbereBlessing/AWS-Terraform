@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnet1" {
   }
   cidr_block        = var.public_subnet_cidr1 
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = var.az[0]
+  availability_zone = var.az2
 }
 resource "aws_subnet" "public_subnet2" { 
   tags = {
@@ -24,7 +24,7 @@ resource "aws_subnet" "public_subnet2" {
   }
   cidr_block        = var.public_subnet_cidr2 
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = var.az[1]
+  availability_zone = var.az1
 }
 
 # Private Subnet
@@ -34,7 +34,7 @@ resource "aws_subnet" "private_subnet2" {
   }
   cidr_block        = var.private_subnet_cidr1 
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = var.az[0]
+  availability_zone = var.az1
 }
 resource "aws_subnet" "private_subnet2" { 
   tags = {
@@ -42,7 +42,7 @@ resource "aws_subnet" "private_subnet2" {
   }
   cidr_block        = var.private_subnet_cidr2
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = var.az[1]
+  availability_zone = var.az2
 }
 # Internet gateway for the public subnet
 resource "aws_internet_gateway" "igw" {
