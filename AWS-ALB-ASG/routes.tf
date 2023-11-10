@@ -13,12 +13,12 @@ resource "aws_route_table" "private-route-table" {
   }
 }
 # Route table associations for both Private subnet 1
-resource "aws_route_table_association" "private" {
+resource "aws_route_table_association" "private1" {
   subnet_id      = aws_subnet.private_subnet1.id
   route_table_id = aws_route_table.private-route_table.id
 }
 # Route table associations for both Private subnet 2
-resource "aws_route_table_association" "private" {
+resource "aws_route_table_association" "private2" {
   subnet_id      = aws_subnet.private_subnet2.id
   route_table_id = aws_route_table.private-route_table.id
 }
@@ -40,12 +40,12 @@ resource "aws_route" "public_igw_gateway" {
   gateway_id             = aws_internet_gateway.igw.id
 }
 # Route table associations for both Public subnet 1
-resource "aws_route_table_association" "public" {
+resource "aws_route_table_association" "public1" {
   subnet_id      = aws_subnet.public_subnet1.id
   route_table_id = aws_route_table.public-route_table.id
 }
 # Route table associations for both Public subnet 2
-resource "aws_route_table_association" "public" {
+resource "aws_route_table_association" "public2" {
   subnet_id      = aws_subnet.public_subnet2.id
   route_table_id = aws_route_table.public-route_table.id
 }

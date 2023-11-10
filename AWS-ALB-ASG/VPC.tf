@@ -38,7 +38,7 @@ resource "aws_subnet" "private_subnet2" {
 }
 resource "aws_subnet" "private_subnet2" { 
   tags = {
-    Name = "${var.tag}-private_subnet2"
+    Name = "${var.tag}-private_subnet1"
   }
   cidr_block        = var.private_subnet_cidr2
   vpc_id            = aws_vpc.vpc.id
