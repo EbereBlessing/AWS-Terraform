@@ -40,7 +40,4 @@ resource "aws_launch_configuration" "ec2" {
   docker run --rm --name nginx-server -d -p 80:80 -t my-nginx
   EOL
   depends_on = [aws_nat_gateway.nat]
-  tags = {
-    Name = "${var.tag}-private-instance"
-}
 }
