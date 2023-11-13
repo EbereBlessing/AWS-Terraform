@@ -58,10 +58,14 @@ variable "autoscale_desired" {
   description = "Desired autoscale (number of EC2)"
   default     = "2"
 }
-# key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair
-variable "public_key" {
-  description = "Path to an SSH public key"
-  default     = "~/.ssh/aws/ec2-bastion.pub"
+variable "public-key-path" {
+  type = string
+  default = "../ssh/ec2-bastion.pub"
+  
+}
+variable "private-key-path" {
+  type = string
+  default = "../ssh/ec2-bastion.pem"
 }
 variable "ec2-bastion-cidr" {
   type = string
