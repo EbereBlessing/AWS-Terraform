@@ -1,9 +1,9 @@
-# NAT Gateway for the public subnet
+# nat.tf
+# EIP
 resource "aws_eip" "NAT_eip" {
   vpc        = true
   depends_on = [aws_internet_gateway.igw]
 }
-
 # NAT Gateway
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.NAT_eip.id

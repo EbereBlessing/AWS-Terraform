@@ -1,8 +1,8 @@
 
 ## ssh connectivity
-resource "aws_key_pair" "key" {
-  key_name = "key"
-  public_key = file("~/.ssh/id_rsa.pub")
+resource "aws_key_pair" "key-pair" {
+  key_name   = "${var.tag}_key_pair"
+  public_key = file(var.public_key)
 }
 # EC2 instance in Public Subnet
 resource "aws_instance" "Bastion" {
@@ -11,7 +11,7 @@ resource "aws_instance" "Bastion" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id     = aws_subnet.public_subnet1.id
   associate_public_ip_address = true
-  key_name      = "key" # Replace with your SSH key pair
+  key_name      = aws_key_pair.key-pair.key_name # Replace with your SSH key pair
   tags = {
     Name = "Bastion"
     description = "Jump server to the private instance "
@@ -22,12 +22,8 @@ resource "aws_launch_configuration" "ec2" {
   image_id            = var.os  # Replace with the desired AMI ID
   instance_type = var.instance     # Replace with the desired instance type
   security_groups             = [aws_security_group.ec2_sg.id]
-  key_name                    = "key"
+  key_name                    = aws_key_pair.key-pair.key_name
   associate_public_ip_address = false
-  tags = {
-    Name = "${var.tag}-instances"
-    description = "Jump server to the private instance "
-  }
   user_data = <<-EOL
   #!/bin/bash -xe
   sudo yum update -y

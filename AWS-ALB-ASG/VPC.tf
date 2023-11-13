@@ -1,3 +1,4 @@
+#VPC.tf
 # Defining the VPC set up
 resource "aws_vpc" "vpc" {
   cidr_block           = var.vpc_cidr
