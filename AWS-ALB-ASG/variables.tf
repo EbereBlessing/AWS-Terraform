@@ -58,14 +58,8 @@ variable "autoscale_desired" {
   description = "Desired autoscale (number of EC2)"
   default     = "2"
 }
-variable "public-key-path" {
-  type = string
-  default = "../ssh/ec2-bastion.pub"
-  
-}
-variable "private-key-path" {
-  type = string
-  default = "../ssh/ec2-bastion.pem"
+variable key_path {
+    default = "keys/keypair.pub"
 }
 variable "ec2-bastion-cidr" {
   type = string
