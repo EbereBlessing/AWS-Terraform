@@ -3,9 +3,8 @@ resource "aws_key_pair" "keypair" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 # EC2 instance in Public Subnet
-# resource "aws_instance" "public_ec2" {
+ resource "aws_instance" "public_ec2" {
   ami             = var.os # Replace with the desired AMI ID
-  allocation_id = aws_eip.NAT_eip.id
   instance_type = var.instance   # Replace with the desired instance type
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id     = aws_subnet.public_subnet1.id
