@@ -1,9 +1,9 @@
 resource "aws_key_pair" "keypair" {
   key_name   = "setup"
-  public_key = file(var.key_path)
+  public_key = file("~/.ssh/id_rsa.pub")
 }
 # EC2 instance in Public Subnet
-#resource "aws_instance" "public_ec2" {
+# resource "aws_instance" "public_ec2" {
   ami             = var.os # Replace with the desired AMI ID
   allocation_id = aws_eip.NAT_eip.id
   instance_type = var.instance   # Replace with the desired instance type
