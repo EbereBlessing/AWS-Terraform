@@ -7,7 +7,7 @@
   associate_public_ip_address = true
   key_name      = aws_key_pair.key-pair.key_name # Replace with your SSH key pair
   tags = {
-    Name = "ALB instances"
+    Name = "Bastion instances"
     description = "EC2 instance "
   }
 }
