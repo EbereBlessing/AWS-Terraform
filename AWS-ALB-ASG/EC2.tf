@@ -1,14 +1,24 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 # EC2 instance in Public Subnet
  resource "aws_instance" "public_ec2" {
   ami             = var.os # Replace with the desired AMI ID
   instance_type = var.instance   # Replace with the desired instance type
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id     = aws_subnet.public_subnet1.id
+<<<<<<< HEAD
   associate_public_ip_address = false # can only be accessible using private(internal) IP
   key_name      = aws_key_pair.key-pair.key_name # Replace with your SSH key pair
   tags = {
     Name = "Bastion Host"
+=======
+  associate_public_ip_address = true
+  key_name      = aws_key_pair.key-pair.key_name # Replace with your SSH key pair
+  tags = {
+    Name = "Bastion instances"
+>>>>>>> origin/main
     description = "EC2 instance "
   }
 }

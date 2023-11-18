@@ -23,6 +23,10 @@ resource "local_sensitive_file" "private-key" {
 ## AWS SSH Key Pair
 resource "aws_key_pair" "key-pair" {
   depends_on = [ local_file.public-key ]
+<<<<<<< HEAD
   key_name = var.private-key-path
+=======
+  key_name = var.key-nam
+>>>>>>> origin/main
   public_key = tls_private_key.ec2-bastion-key-pair.public_key_openssh
 }
