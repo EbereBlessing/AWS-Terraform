@@ -13,3 +13,7 @@ resource "aws_nat_gateway" "nat" {
     Name  = "nat-gateway-${var.tag}"
   }
 }
+resource "aws_eip_association" "ec2-bastion-host-eip-association" {
+    instance_id = aws_instance.public_ec2.id
+    allocation_id = aws_eip.NAT_eip.id
+}
