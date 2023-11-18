@@ -1,7 +1,4 @@
-resource "aws_key_pair" "keypair" {
-  key_name   = "setup"
-  public_key = file("~/.ssh/id_rsa.pub")
-}
+
 # EC2 instance in Public Subnet
  resource "aws_instance" "public_ec2" {
   ami             = var.os # Replace with the desired AMI ID
@@ -11,7 +8,7 @@ resource "aws_key_pair" "keypair" {
   associate_public_ip_address = true
   key_name      = aws_key_pair.keypair.key_name # Replace with your SSH key pair
   tags = {
-    Name = "ALB instances"
+    Name = "Bastion Host"
     description = "EC2 instance "
   }
 }

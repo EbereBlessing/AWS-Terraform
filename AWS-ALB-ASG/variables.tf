@@ -60,11 +60,11 @@ variable "autoscale_desired" {
 }
 variable "public-key-path" {
   type = string
-  default = "~/.ssh/ec2-bastion.pub"
+  default = "ssh/ec2-bastion.pub"
 }
 variable "private-key-path" {
   type = string
-  default = "~/.ssh/ec2-bastion.pem"
+  default = "ssh/ec2-bastion.pem"
 }
 variable "ec2-bastion-cidr" {
   type = string
