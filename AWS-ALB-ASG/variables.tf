@@ -66,6 +66,9 @@ variable "private-key-path" {
   type = string
   default = "ssh/ec2-bastion.pem"
 }
+variable "key-nam" {
+  default = "ec2-bastion"
+}
 variable "ec2-bastion-cidr" {
   type = string
   default = "0.0.0.0/0"
