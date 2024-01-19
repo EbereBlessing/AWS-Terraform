@@ -6,10 +6,10 @@ variable "region" {
 variable "cluster_name" {
   description = "cluster name"
   type        = string
-  default     = "EKS-SETUP"
+  default     = "eks-project"
 }
 variable "vpc" {
-  description = "cluster name"
+  description = "EKS Project"
   type        = string
   default     = "EKS-VPC"
 }
