@@ -66,19 +66,19 @@ resource "aws_route_table" "main" {
 # Route table and subnet associations
 resource "aws_route_table_association" "public_subnet" {
   count = length(var.az)
-  subnet_id      = "${aws_subnet.public_subnet[count.index].id}"
+  subnet_id      = "${aws_subnet.eks_public_subnet[count.index].id}"
   route_table_id = "${aws_route_table.main.id}"
 }
 
 # Create Elastic IP
 resource "aws_eip" "main" {
-  vpc              = true
+  domain             = "vpc"
 }
 
 # Create NAT Gateway
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.main.id
-  subnet_id     = aws_subnet.public_subnet[0].id
+  subnet_id     = aws_subnet.eks_public_subnet[0].id
 
   tags = {
     Name = "NAT Gateway for EKS Project"

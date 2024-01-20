@@ -3,6 +3,7 @@ variable "eks_cluster_name" {
   default = "EKS Cluster Project"
   type = string
 }
+
 variable "vpc_name" {
   type        = string
   default = "EKS vpc"
@@ -22,13 +23,13 @@ variable "vpc_cidr_block" {
 
 variable "private_subnet_cidr_blocks" {
   type        = list(string)
-  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+  default     = ["10.0.1.0/24", "10.0.3.0/24","10.0.7.0/24"]
   description = "CIDR block range for the private subnet"
 }
 
 variable "public_subnet_cidr_blocks" {
   type = list(string)
-  default     = ["10.0.2.0/24", "10.0.3.0/24"]
+  default     = ["10.0.2.0/24", "10.0.4.0/24", "10.0.6.0/24"]
   description = "CIDR block range for the public subnet"
 }
 
@@ -51,11 +52,7 @@ variable "az" {
 }
 
 variable "region" {
-  default = ["us-east-2"]
+  default = "us-east-2"
   type        = string
 }
-locals {
-  public_subnets_ids  = var.public_subnet_cidr_blocks
-  private_subnets_ids = module.vpc.private_subnet_cidr_blocks
-  subnets_ids         = concat(local.public_subnets_ids, local.private_subnets_ids)
-  }
+

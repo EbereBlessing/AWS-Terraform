@@ -10,7 +10,7 @@ resource "aws_security_group" "public_sg" {
 
 # Security group traffic rules
 ## Ingress rule
-resource "aws_security_group_rule" "ec2_sg" {
+resource "aws_security_group_rule" "ec2_sg443" {
   security_group_id = aws_security_group.public_sg.id
   type              = "ingress"
   from_port         = 443
@@ -19,7 +19,7 @@ resource "aws_security_group_rule" "ec2_sg" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "ec2_sg" {
+resource "aws_security_group_rule" "ec2_sg80" {
   security_group_id = aws_security_group.public_sg.id
   type              = "ingress"
   from_port         = 80
