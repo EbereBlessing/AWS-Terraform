@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "master-assume_role" {
+data "aws_iam_policy_document" "master_assume_role" {
   statement {
     effect = "Allow"
 
@@ -11,12 +11,12 @@ data "aws_iam_policy_document" "master-assume_role" {
   }
 }
 
-resource "aws_iam_role" "master-role" {
+resource "aws_iam_role" "master_role" {
   name               = "eks-masternode-role"
-  assume_role_policy = data.aws_iam_policy_document.master-assume_role.json
+  assume_role_policy = data.aws_iam_policy_document.master_assume_role.json
 }
 
-resource "aws_iam_role_policy_attachment" "masternode-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "masternode_AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.master-role.name
+  role       = aws_iam_role.master_role.name
 }
