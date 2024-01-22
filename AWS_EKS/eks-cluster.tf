@@ -10,5 +10,6 @@ resource "aws_eks_cluster" "eks_project" {
   }
   depends_on = [
     aws_iam_role_policy_attachment.masternode_AmazonEKSClusterPolicy
+    modules.eks-vpc
   ]
 }
