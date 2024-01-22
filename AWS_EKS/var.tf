@@ -1,36 +1,39 @@
 variable "eks_cluster_name" {
   description = "EKS Project"
   type = string
+  default = "EKS_project"
 }
 variable "cluster_name" {
    description = "cluster SG"
    type = string
+   default = "EKS_project"
 }
 
 variable "nodes_name" {
     description = "node SG"
     type = string
+    default = "EKS_nodegroup"
 }
 
 variable "subnet_ids" {
     description = "list of subnet"
     type = list(string)
-    default = ["subnet-12345678", "subnet-23456789", "subnet-34567890"]
+    default = [ "subnet-0239e12834f028fcc", "subnet-0744d7de015a3ff50", "subnet-043f798c11f22305d", "subnet-0239e12834f028fcc", "subnet-0744d7de015a3ff50", "subnet-043f798c11f22305d"]
 }
 variable "vpc_id" {
     description = "vpc id"
-    default     =  "subnet-34567890"
+    default     =  "vpc-056d89704eafe3921"
     type = string
 }
 variable "public_subnet_ids" {
     description = "List of public subnet IDs"
     type = list(string)
-    default  = ["subnet-12345678", "subnet-23456789", "subnet-34567890"]
+    default  = [ "subnet-0239e12834f028fcc", "subnet-0744d7de015a3ff50", "subnet-043f798c11f22305d" ]
 }
 variable "private_subnet_ids" {
     description = "List of private subnet IDS"
     type = list(string)
-    default  = ["subnet-12345678", "subnet-23456789", "subnet-34567890"]
+    default  = [ "subnet-0239e12834f028fcc", "subnet-0744d7de015a3ff50", "subnet-043f798c11f22305d"]
 }
 variable "ami_type" {
   description = "Type of Amazon Machine Image (AMI) associated with the EKS Node Group. Defaults to AL2_x86_64. Valid values: AL2_x86_64, AL2_x86_64_GPU."
