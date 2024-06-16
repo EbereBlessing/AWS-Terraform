@@ -1,0 +1,11 @@
+Status,Status Reason,Count
+processing,n/a,6
+success,n/a,6
+failure,timeout,3
+failure,error,5
+failure,missing_configuration,2
+failed,contact_admin,1
+failed,cannot_reach_downstream_entity,2
+failed,invalid_yaml,3
+failed,too_many_jobs,2
+failed,out_of_memory,1
