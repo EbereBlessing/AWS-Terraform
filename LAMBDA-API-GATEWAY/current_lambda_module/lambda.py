@@ -6,7 +6,7 @@ def lambda_handler(event, context):
     response = {
         'statusCode': 200,
         'body': json.dumps({
-            'message': f'Hello From Canary Deployment  {version}!',
+            'message': f'Hello From Canary Deployment {version}!',
             'input': event
         })
     }
