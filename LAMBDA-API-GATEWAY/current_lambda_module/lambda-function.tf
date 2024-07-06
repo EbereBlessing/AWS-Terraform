@@ -13,17 +13,5 @@ resource "aws_lambda_function" "canary_lambda" {
   filename         = data.archive_file.lambda.output_path
   source_code_hash = data.archive_file.lambda.output_base64sha256
   runtime       = "python3.12"
-
-    environment {
-    variables = {
-      VERSION = "version1"
-    }
-  }
   publish = true
-}
-# Creating an alias for the initial version
-resource "aws_lambda_alias" "lambda_alias" {
-  name             = "version1"
-  function_name    = aws_lambda_function.canary_lambda.function_name
-  function_version = aws_lambda_function.canary_lambda.version
 }
