@@ -7,6 +7,3 @@ module "current_lambda_module" {
   source       = "./current_lambda_module"
     }
 
-module "updated_lambda_module" {
-  source       = "./updated_lambda_module"
-    }

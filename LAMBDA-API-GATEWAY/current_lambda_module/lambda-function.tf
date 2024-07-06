@@ -16,14 +16,14 @@ resource "aws_lambda_function" "canary_lambda" {
 
     environment {
     variables = {
-      VERSION = "current"
+      VERSION = "version1"
     }
   }
   publish = true
 }
 # Creating an alias for the initial version
 resource "aws_lambda_alias" "lambda_alias" {
-  name             = "stable_version"
+  name             = "version1"
   function_name    = aws_lambda_function.canary_lambda.function_name
   function_version = aws_lambda_function.canary_lambda.version
 }
