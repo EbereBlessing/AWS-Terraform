@@ -1,8 +1,8 @@
 # Compressing the .py file with it dependencies
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "${path.module}/lambda.py"
-  output_path = "${path.module}/lambda.zip"
+  source_file = "lambda.py"
+  output_path = "lambda.zip"
 }
 resource "aws_lambda_function" "canary_lambda" {
   # If the file is not in the current working directory you will need to include a
